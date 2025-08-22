@@ -1,0 +1,169 @@
+<H1>Food-mall | Home</H1>
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food-mall | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #fafafa;
+        }
+        .hero-section {
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            padding: 80px 0 60px 0;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #323232;
+        }
+        .hero-section p {
+            font-size: 1.25rem;
+            color: #644e4e;
+        }
+        .food-category-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+            background: #fff;
+        }
+        .food-category-card:hover {
+            transform: translateY(-7px) scale(1.03);
+            box-shadow: 0 1rem 2rem rgba(0,0,0,0.09);
+        }
+        .food-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            color: #ff6f61;
+        }
+        .browse-btn {
+            background: #ff6f61;
+            color: #fff;
+            border:none;
+            margin-top: 25px;
+        }
+        .browse-btn:hover {
+            background: #ff3b20;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: #ff6f61 !important;
+        }
+        .nav-link {
+            color: #494949 !important;
+        }
+        footer {
+            background: #23272b;
+            padding: 25px 0;
+            color: #fff;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+   <link rel="icon" href="{% static 'images/favicon.ico' %}"> 
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+        <div class="container">
+            <a class="navbar-brand" href="/">Food-mall</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'menu' %}">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Order Delicious Food, Fast!</h1>
+            <p>Welcome to <b>Food-mall</b> – your favorite spot for ordering food online. Fresh meals, rapid delivery, unbeatable variety!</p>
+            <a href="{% url 'menu' %}" class="btn browse-btn btn-lg px-5">Browse Menu</a>
+        </div>
+    </section>
+    
+    <!-- Featured Categories -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Popular Categories</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card food-category-card text-center p-4">
+                        <div class="food-icon">🍕</div>
+                        <h5 class="card-title">Pizzas</h5>
+                        <p class="card-text">Cheesy, delicious, and freshly baked.</p>
+                        <a href="{% url 'category' 'pizza' %}" class="stretched-link"></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card food-category-card text-center p-4">
+                        <div class="food-icon">🍔</div>
+                        <h5 class="card-title">Burgers</h5>
+                        <p class="card-text">Juicy patties and gourmet fillings.</p>
+                        <a href="{% url 'category' 'burger' %}" class="stretched-link"></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card food-category-card text-center p-4">
+                        <div class="food-icon">🥗</div>
+                        <h5 class="card-title">Healthy Salads</h5>
+                        <p class="card-text">Fresh, crisp, and full of flavor.</p>
+                        <a href="{% url 'category' 'salad' %}" class="stretched-link"></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card food-category-card text-center p-4">
+                        <div class="food-icon">🍜</div>
+                        <h5 class="card-title">Asian Delights</h5>
+                        <p class="card-text">From noodles to sushi, all at one place.</p>
+                        <a href="{% url 'category' 'asian' %}" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="text-center py-5" style="background:#fff8f0;">
+        <div class="container">
+            <h3>Discover, Order, and Enjoy!</h3>
+            <p>Ready to explore the flavors? Join Food-mall now and get exclusive offers on your first order!</p>
+            <a href="{% url 'signup' %}" class="btn btn-outline-danger px-4 py-2">Sign Up Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© {{ year }} Food-mall. All Rights Reserved. Crafted with ♥ for food lovers.</p>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // For any custom interactivity, you can add JS here
+    </script>
+</body>
+</html>  {% endcomment %}

@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+# def hello(request):
+#     return HttpResponse("Hello, world! This is the home page of the Food Online Application.")
+
 def hello(request):
-    return HttpResponse("Hello, world! This is the home page of the Food Online Application.")
+    return render(request, 'index.html')
